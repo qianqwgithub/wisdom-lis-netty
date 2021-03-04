@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: dev
+
+yncc:
+  netty:
+    filePath: C:/yncc/netty-config.txt

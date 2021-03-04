@@ -1,0 +1,6 @@
+server:
+  port: 10001
+
+yncc:
+  netty:
+    filePath: C:/yncc/netty-config.txt
