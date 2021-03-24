@@ -1,5 +1,6 @@
 package com.yncc.wisdom.lis.nettyService;
 
+import com.yncc.wisdom.lis.util.enCode.HexUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;
@@ -32,7 +33,7 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel>{
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception{
         //分隔符
-        ByteBuf delimiterByteBuf=Unpooled.copiedBuffer(DELIMITER.getBytes());
+        ByteBuf delimiterByteBuf=Unpooled.copiedBuffer(HexUtil.hexStringToString(DELIMITER).getBytes());
         //设置log监听器，并且日志级别为debug，方便观察运行流程
         socketChannel.pipeline().addLast("logging", new LoggingHandler("DEBUG"));
         socketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(MAXFRAMELENGTH,delimiterByteBuf));

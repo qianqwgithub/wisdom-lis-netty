@@ -18,10 +18,9 @@ public class UritParse{
         logger.info("优利特仪器报文解析.");
         logger.info("仪器报文:"+params);
         try {
-            String stringHex=params.substring(params.indexOf("0B")+2,params.indexOf("1C"));
-            if(stringHex!=null){
-                String stringStr=HexUtil.hexStringToString(stringHex);
-                String[] resultArray=stringStr.split("\\r");
+//            String stringHex=params.substring(params.indexOf("0B")+2,params.indexOf("1C"));
+            if(params!=null){
+                String[] resultArray=params.split("\\r");
 
                 String[] msh=!resultArray[0].equals("")?resultArray[0].split("\\|",-1):null;
                 UritMsh uritMsh=new UritMsh();
@@ -99,9 +98,10 @@ public class UritParse{
                 urit.setUritObr(uritObr);
                 urit.setUritObxs(uritObxes);
 
+                logger.info("解析好的报文:"+ JSONObject.toJSONString(urit));
                 UritResult uritResult=new UritResult();
                 uritResult.save(urit);
-                logger.info("解析好的报文:"+ JSONObject.toJSONString(uritResult));
+                logger.info("存储结果:"+ JSONObject.toJSONString(uritResult));
             }else{
                 logger.debug("报文不完整.");
             }

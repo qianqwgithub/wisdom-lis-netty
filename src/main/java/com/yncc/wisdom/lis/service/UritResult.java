@@ -45,7 +45,7 @@ public class UritResult{
             reader.close();
             NettyConnection nettyConnection=JSONObject.parseObject(sbf.toString(),NettyConnection.class);
             //通过小组和设备获取对应项目()
-            String selectProjectUrl="http://"+nettyConnection.getServer_ip()+":"+nettyConnection.getServer_port()+"/api/wisdom-lis-basic/lis_project_equip_r/projectequipr/selectProject";
+            String selectProjectUrl="http://"+nettyConnection.getServer_ip()+":"+nettyConnection.getServer_port()+"/wisdom-lis-basic/lis_project_equip_r/projectequipr/selectProject?groupCode="+ nettyConnection.getGroupCode()+"&equipCode="+nettyConnection.getEquipCode();
 //            String selectProjectUrl="http://"+nettyConnection.getServer_ip()+":"+6500+"/lis_project_equip_r/projectequipr/selectProject?groupCode="+ nettyConnection.getGroupCode()+"&equipCode="+nettyConnection.getEquipCode();
             JSONObject response=restTemplate.getForObject(selectProjectUrl,JSONObject.class);
             List<Result> results=new ArrayList<>();
